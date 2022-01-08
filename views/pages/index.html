@@ -1,0 +1,52 @@
+<!-- basic html page with bootstrap -->
+<html lang="en">    
+    <!-- import bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
+    <!-- script with type as js -->
+    <script type="text/javascript">
+        // function to increment counter
+        function incrementCounter() {
+            $.ajax({
+                url: 'http://localhost:3000/increment',
+                type: 'POST',
+                success: function(data) {
+                    // add data.counter to counterDisplay textbox
+                    $('#counterDisplay').val(data.counter);
+                }
+            });
+        }
+        function getData() {
+            $.ajax({
+                url: 'http://localhost:3000/counter',
+                type: 'GET',
+                success: function(data) {
+                    console.log(data.counter)
+                    $('#counterDisplay').val(data.counter);
+                }
+            });
+        }
+    </script>
+        <!-- show counter text and a button -->
+    <body onload=getData()>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Counter</h1>
+                    <div>
+                        <!-- add text box with id counterDisplay -->
+                        <input type="text" id="counterDisplay" class="form-control">
+                    </div>
+                    <!-- add button -->
+                    <div>
+                        <button class="btn btn-primary" onclick="incrementCounter()">Increment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <!-- add js script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- add custom js script tag -->
+    
+</html>
